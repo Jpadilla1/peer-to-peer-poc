@@ -42,7 +42,7 @@ function App() {
   const handleConnect = (destId) => {
     const instance = initialize();
 
-    instance.on('open', function() {
+    instance.on('open', () => {
 			const c = instance.connect(destId, {
 				reliable: true
       });
@@ -65,12 +65,12 @@ function App() {
 
   useEffect(() => {
     if (conn) {
-      conn.on('data', function(data){
+      conn.on('data', (data) => {
         // Will print 'hi!'
-        setMessages([...messages, data]);
+        setMessages((msgs) => [...msgs, data]);
       });
     }
-  }, [conn, messages]);
+  }, [conn])
 
   return (
     <div className="App">
